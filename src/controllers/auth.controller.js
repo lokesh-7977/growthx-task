@@ -7,9 +7,9 @@ import { config } from "../config/index.js";
 export const register = async (req, res) => {
   const { username, email, password, role } = req.body;
 
-    if (!username || !email || !password) {
+  if (!username || !email || !password) {
     return res.status(400).json({ message: "Please fill all the fields" });
-    }
+  }
 
   const user = await Auth.findOne({ email });
   if (user) {
@@ -27,13 +27,20 @@ export const register = async (req, res) => {
     role,
   });
 
+  const token = jwt.sign(
+    { id: newUser.id, role: newUser.role },
+    config.jwtSecret,
+    { expiresIn: config.jwt_expiry }
+  );
+
   try {
     await newUser.save();
     res.status(201).json({
-        id: newUser.id,
-        username: newUser.username,
-        email: newUser.email,
-        role: newUser.role,
+      id: newUser.id,
+      username: newUser.username,
+      email: newUser.email,
+      role: newUser.role,
+      token,
     });
   } catch (error) {
     res.status(409).json({ message: error.message });
@@ -75,3 +82,52 @@ export const login = async (req, res) => {
     }
   );
 };
+
+
+export const getAllAdmins = async (req, res) => {
+  try {
+    const admins = await Auth.find({ role: "admin" });
+    res.status(200).json({
+      admins: admins.map((admin) => ({
+        id: admin.id,
+        username: admin.username,
+        email: admin.email,
+        role: admin.role,
+      })),    
+    });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
+export const getAllMembers = async (req, res) => {
+  try {
+    const users = await Auth.find({role : "user"});
+    res.status(200).json({
+      users: users.map((user) => ({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+      })),    
+    });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await Auth.find();
+    res.status(200).json({
+      users: users.map((user) => ({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+      })),    
+    });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import { v4 as uuidv4 } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
+
 const authSchema = new mongoose.Schema(
   {
     id: { type: String, default: () => uuidv4() },
@@ -11,4 +12,4 @@ const authSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Auth = mongoose.model("Auth", authSchema);
+export const Auth = mongoose.model("Auth", authSchema);

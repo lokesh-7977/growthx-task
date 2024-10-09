@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import { config } from './config/index.js'
 import connectDb from './config/db.js'
+import routes from './routes/index.js'
 
 const app = express()
 const port = config.port;
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 app.get('/', (_req, res) => res.send('Hello!! GrowthX Task Server!'))
+app.use('/api',routes)
 
 
 app.listen(port, () => 

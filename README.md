@@ -107,9 +107,7 @@ backend-app/
   {
     "message": "Login successful",
     "token": "your-jwt-token"
-     "user data : {
-     
-  }
+     "user data : "your data"
   ```
 
 #### 2. `/register` [POST]

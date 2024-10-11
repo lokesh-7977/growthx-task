@@ -17,7 +17,19 @@ app.use(
 
 app.use(bodyParser.json());
 app.get("/", (req, res) => res.send("Hello!! GrowthX Task Server!"));
-app.get("/health", (req, res) => res.send("Server is up and running!"));
+app.get("/health", (req, res) => res.json({
+  "Server Status": "Running",
+  "Server Time": new Date().toLocaleString(),
+  "Server Timezone": Intl.DateTimeFormat().resolvedOptions().timeZone,
+  "Server Port": port,
+  "Server Hostname": req.hostname,
+  "Server IP": req.ip,
+  "Server Method": req.method,
+  "Server Path": req.path,
+  "Server Query": req.query,
+  "Server Headers": req.headers
+
+}));
 
 app.use("/", routes);
 

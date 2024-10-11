@@ -17,6 +17,8 @@ app.use(
 
 app.use(bodyParser.json());
 app.get("/", (req, res) => res.send("Hello!! GrowthX Task Server!"));
+app.get("/health", (req, res) => res.send("Server is up and running!"));
+
 app.use("/", routes);
 
 app.listen(port, () =>

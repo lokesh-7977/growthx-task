@@ -4,6 +4,14 @@ import assignmentRoute from "./assignment.route.js";
 
 const router = Router();
 
+app.get("/", (req, res) => res.send("Hello!! GrowthX Task Server!"));
+app.get("/health", (req, res) => res.json({
+  "Server Status": "Running",
+  "Server Time": new Date().toLocaleString(),
+  "Server Timezone": Intl.DateTimeFormat().resolvedOptions().timeZone,
+  "Server Port": port
+}));
+
 router.use("/", authRoute);
 router.use("/", assignmentRoute);
 

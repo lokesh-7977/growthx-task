@@ -150,8 +150,11 @@ backend-app/
 - **Request Body**:
 
   ```json
- with given example
-  
+    {
+    'userId':Soumik,
+    'task':'Hello World',
+    'admin':'Alok',
+    }
   ```
 
 #### 5. `/assignments` [GET]

@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
 
 const assignmentSchema = new mongoose.Schema(
   {
-    task: { type: String, required: true }, 
-    userId: { type: String, ref: 'User', required: true },
+    task: { type: String }, 
+    userId: { type: String },
+    adminId : { type: String },
     status: { type: String, enum: ['active', 'completed', 'rejected'], default: 'active' }, 
   },
   { timestamps: true } 

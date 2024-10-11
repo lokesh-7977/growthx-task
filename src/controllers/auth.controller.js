@@ -5,9 +5,9 @@ import { Auth } from "../models/auth.model.js";
 import { config } from "../config/index.js";
 
 export const register = async (req, res) => {
-  const { username, email, password, role } = req.body;
+  const { name, email, password, role } = req.body;
 
-  if (!username || !email || !password) {
+  if (!name || !email || !password) {
     return res.status(400).json({ message: "Please fill all the fields" });
   }
 
@@ -21,7 +21,7 @@ export const register = async (req, res) => {
 
   const newUser = new Auth({
     id: uuidv4(),
-    username,
+    name,
     email,
     password: hashedPassword,
     role,
@@ -37,7 +37,7 @@ export const register = async (req, res) => {
     await newUser.save();
     res.status(201).json({
       id: newUser.id,
-      username: newUser.username,
+      username: newUser.name,
       email: newUser.email,
       role: newUser.role,
       token,
@@ -65,7 +65,7 @@ export const login = async (req, res) => {
   }
 
   jwt.sign(
-    { id: user.uuid },
+    { id: user.uuid , role: user.role },
     config.jwtSecret,
     { expiresIn: config.jwt_expiry },
     (err, token) => {
@@ -74,7 +74,7 @@ export const login = async (req, res) => {
         token,
         user: {
           id: user.uuid,
-          username: user.username,
+          username: user.name,
           email: user.email,
           role: user.role,
         },
@@ -90,7 +90,7 @@ export const getAllAdmins = async (req, res) => {
     res.status(200).json({
       admins: admins.map((admin) => ({
         id: admin.id,
-        username: admin.username,
+        username: admin.name,
         email: admin.email,
         role: admin.role,
       })),    
@@ -106,7 +106,7 @@ export const getAllMembers = async (req, res) => {
     res.status(200).json({
       users: users.map((user) => ({
         id: user.id,
-        username: user.username,
+        username: user.name,
         email: user.email,
         role: user.role,
       })),    
@@ -122,7 +122,7 @@ export const getAllUsers = async (req, res) => {
     res.status(200).json({
       users: users.map((user) => ({
         id: user.id,
-        username: user.username,
+        username: user.name,
         email: user.email,
         role: user.role,
       })),    

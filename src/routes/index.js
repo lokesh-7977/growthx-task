@@ -4,7 +4,7 @@ import assignmentRoute from "./assignment.route.js";
 
 const router = Router();
 
-router.use("/auth", authRoute);
+router.use("/", authRoute);
 router.use("/", assignmentRoute);
 
 export default router;

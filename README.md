@@ -3,6 +3,9 @@
 
 This is a Node.js backend application built with Express. It supports user authentication, admin management, and assignment handling. Users can register, log in, and upload assignments, while admins can manage and review assignments.
 
+
+Deployment Link :- https://growthx-task.onrender.com ( 10 seconds requests delay due to free tier of onrender)
+
 ## Features
 
 - **User Authentication**: Login and registration for users.

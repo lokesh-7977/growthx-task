@@ -70,10 +70,10 @@ To run this project locally, follow these steps:
 ```bash
 backend-app/
 ├── src/
-│   ├── index.js              # Entry point of the app
+│   ├── server.js              # Entry point of the app
 │   ├── routes/
 │   │   ├── auth.js           # Auth routes (login, register)
-│   │ 
+│   │   |-- assignment.js
 │   ├── middleware/
 │   │   ├── auth.js           # Authentication middleware (authenticateUser, authenticateAdmin)
 │   ├── controllers/

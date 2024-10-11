@@ -6,10 +6,9 @@ const router = Router();
 
 router.get("/", (req, res) => res.send("Hello!! GrowthX Task Server!"));
 router.get("/health", (req, res) => res.json({
-  "Server Status": "Running",
-  "Server Time": new Date().toLocaleString(),
-  "Server Timezone": Intl.DateTimeFormat().resolvedOptions().timeZone,
-  "Server Port": port
+    "Server Status": "Running",
+    "Server Time": new Date().toLocaleString(),
+    "Server Timezone": Intl.DateTimeFormat().resolvedOptions().timeZone,
 }));
 
 router.use("/", authRoute);

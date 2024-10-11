@@ -52,9 +52,9 @@ To run this project locally, follow these steps:
 
    ```env
    PORT = 4000 || unique port number 
-DB_URL = db uri from mongo atlas
-JWT_SECRET = "secret"
-JWT_EXPIRY = days for token expiry like 1 day, 7 days, 30 days etc
+   DB_URL = db uri from mongo atlas
+   JWT_SECRET = "secret"
+   JWT_EXPIRY = days for token expiry like 1 day, 7 days, 30 days etc
    ```
 
 5. **Start the server:**
